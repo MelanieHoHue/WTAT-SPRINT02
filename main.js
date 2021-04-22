@@ -14,6 +14,10 @@ app.get("/", (req, res) => {
 
 });
 
+app.post("/contact", (req, res) => {
+    res.send("Submitting contact information was successful!");
+});
+
 
 
 app.listen(port, () => {
