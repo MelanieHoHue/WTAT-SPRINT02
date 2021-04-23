@@ -13,7 +13,7 @@ app.use(
 
 app.use(express.json());
 app.use((req, res, next) => {
-    console.log(`Request was made to ${req.url}`);
+    console.log(`Requst was made for ${req.url}`);
     next();
 })
 
