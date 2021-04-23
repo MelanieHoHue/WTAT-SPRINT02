@@ -3,7 +3,8 @@
 const port = 3000,
 express = require("express"),
 app = express(),
-homeController = require("./controllers/homeController");
+homeController = require("./controllers/homeController"),
+userController = require("./controllers/userController");
 
 app.use(
     express.urlencoded({
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
 app.get("/", homeController.sendHomeView);
 
 app.post("/", homeController.showIncomingData);
+
+app.post("/sign_up", userController.userSignUpProcessor);
 
 app.get("/items/:vegetables", homeController.sendReqParameters);
 
