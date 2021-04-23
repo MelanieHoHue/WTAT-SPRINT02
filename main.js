@@ -4,14 +4,18 @@ const port = 3000,
 express = require("express"),
 app = express();
 
-app.use((req, res ,next) => {
-    console.log(`Request was made for ${req.url}`);
-    next();
-});
+app.use(
+    express.urlencoded({
+        extended: false
+    })
+);
 
-app.get("/items/:vegetable", (req, res) => {
-    let veg = req.params.vegetable;
-    res.send(`This is th epage for ${veg}`);
+app.use(express.json());
+
+app.post("/", (req, res) => {
+    console.log(req.body);
+    console.log(req.query);
+    res.send(req.query);
 });
 
 app.listen(port, () => {
