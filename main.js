@@ -1,10 +1,14 @@
 "use strict";
 
-const port = 3000,
-express = require("express"),
+const express = require("express"),
 app = express(),
+port = 3000,
 homeController = require("./controllers/homeController"),
-userController = require("./controllers/userController");
+userController = require("./controllers/userController"),
+layouts = require("express-ejs-layouts");
+
+app.set("view engine", "ejs");
+app.use(layouts);
 
 app.use(
     express.urlencoded({
@@ -21,6 +25,8 @@ app.use((req, res, next) => {
 app.get("/", homeController.sendHomeView);
 
 app.post("/", homeController.showIncomingData);
+
+app.get("/name/:myName", homeController.respondWithName);
 
 app.post("/sign_up", userController.userSignUpProcessor);
 
